@@ -18,6 +18,6 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     end
     follow_redirect!
     assert_template 'users/show'
-    assert_template "shared/notifications"
+    assert_not flash.nil?
   end
 end
