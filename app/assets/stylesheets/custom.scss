@@ -234,3 +234,14 @@ input {
 .dropdown:hover .dropbtn {
   background-color: #3e8e41;
 }
+
+/* Users index */
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto !important;
+    padding: 10px 0;
+    border-bottom: 1px solid $gray-lighter;
+  }
+}
