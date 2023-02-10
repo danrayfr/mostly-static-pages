@@ -79,6 +79,5 @@ end
 gem "bootstrap-sass", "~> 3.4"
 gem "turbo-rails"
 gem "faker", "~> 3.1"
-
 gem "will_paginate", "~> 3.3"
 gem "bootstrap-will_paginate", "~> 1.0"
