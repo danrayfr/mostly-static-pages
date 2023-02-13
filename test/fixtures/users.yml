@@ -5,7 +5,7 @@ danray:
   admin: true
   activated: true,
   activated_at: <%= Time.zone.now %>
-
+  
 genie:
   name: Genie Example
   email: genie@example.com
