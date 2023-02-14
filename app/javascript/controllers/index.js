@@ -7,11 +7,11 @@ import { application } from "controllers/application";
 // eagerLoadControllersFrom("controllers", application);
 
 // Lazy load controllers as they appear in the DOM (remember not to preload controllers in import map!)
-import { lazyLoadControllersFrom } from "@hotwired/stimulus-loading";
-lazyLoadControllersFrom("controllers", application);
+// import { lazyLoadControllersFrom } from "@hotwired/stimulus-loading";
+// lazyLoadControllersFrom("controllers", application);
 
 // import HelloController from "./hello_controller";
 // application.register("hello", HelloController);
 
-// import DropdownController from "./dropdown_controller";
-// application.register("dropdown", DropdownController);
+import DropdownController from "./dropdown_controller";
+application.register("dropdown", DropdownController);

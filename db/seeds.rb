@@ -30,3 +30,10 @@ User.create!(name: "Example User",
               )
   puts "#{user.name} is created!"
 end
+
+# Generate microposts for a subset of users
+users = User.order(:created_at).take(6)
+50.times do 
+  content = Faker::Lorem.sentence(word_count: 10)
+  users.each { |user| user.microposts.create!(content: content)}
+end
