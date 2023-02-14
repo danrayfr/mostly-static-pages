@@ -34,7 +34,7 @@ Rails.application.configure do
   end
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
+  config.active_storage.service = :amazon # Change to :local when testing locally, and change to :amazon when testing to s3 bucket
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
@@ -86,4 +86,5 @@ Rails.application.configure do
 
   # enable debug mode
   config.assets.debug = true
+
 end

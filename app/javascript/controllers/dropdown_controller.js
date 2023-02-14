@@ -5,7 +5,6 @@ export default class extends Controller {
   static targets = ["toggleable"];
   connect() {
     super.connect();
-    console.log("Connecting to data-controller");
   }
 
   toggle() {
