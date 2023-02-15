@@ -1,0 +1,15 @@
+one:
+  follower: lana
+  followed: genie
+
+two:
+  follower: danray
+  followed: lana
+
+three:
+  follower: lana
+  followed: danray
+
+four:
+  follower: genie
+  followed: danray
