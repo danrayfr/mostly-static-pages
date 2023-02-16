@@ -1,0 +1,12 @@
+<% provide(:title, "Show Toy")%>
+
+<h1><%= @toy.name %></h1>
+<p><%= @toy.description %></p>
+ <% @toy.images.each do |image| %>
+    <%= image_tag(image.variant(resize_to_limit: [100, 100])) %>
+  <% end %>
+<br>
+<% if current_user.admin? %>
+  <%= link_to "Edit Toy", edit_toy_path(@toy), class: "btn btn-primary" %>
+  <%= link_to "Delete", @toy, class: "btn btn-danger",  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}  %>
+<% end %>

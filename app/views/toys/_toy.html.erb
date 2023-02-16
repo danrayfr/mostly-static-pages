@@ -1,0 +1,15 @@
+<div class="col-md-4">
+  <div class="card">
+    <div class="card-block">
+      <h4 class="card-title">
+        <%= image_tag(toy.images.first.variant(resize_to_limit: [200, 200]), alt: toy.name) if toy.images.attached? %>
+        <br>
+        <%= link_to toy.name, toy_path(toy) %>
+      </h4>
+      <p class="card-text p-y-1">
+        <%= toy.description.truncate(50) %>
+      </p>
+      <%= link_to "View" , toy_path(toy), class: "btn btn-info" %>
+    </div>
+  </div>
+</div>

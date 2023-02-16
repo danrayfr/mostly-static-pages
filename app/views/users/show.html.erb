@@ -23,4 +23,12 @@
       </div>
     <% end %>
   </div>
+  <div class="col-md-8">
+    <% if @user.toys.any? %>
+      <h3>Toys (<%= @user.toys.count %>)</h3>
+      <ol class="toys">
+        <%= render @toys %>
+      </ol>
+    <% end %>
+  </div>
 </div> 

@@ -15,3 +15,6 @@ import { application } from "controllers/application";
 
 import DropdownController from "./dropdown_controller";
 application.register("dropdown", DropdownController);
+
+import MultipleImagesController from "./multiple_images_controller";
+application.register("multiple_images", MultipleImagesController);

@@ -1,0 +1,16 @@
+<% provide(:title, "All Toys")%>
+<h1>Toys</h1>
+<p>These are the the list of toys</p>
+<%= link_to "Create new", new_toy_path, class: "btn btn-primary" if logged_in? %>
+<br>
+<div class="py-5">
+  <div class="container">
+    <div class="row hidden-md-up">
+      <% @toys.each do |toy|%>
+        <%= render "toy", toy: toy %>
+      <% end %>
+    </div>
+    <%= will_paginate %>
+  </div>
+</div>
+

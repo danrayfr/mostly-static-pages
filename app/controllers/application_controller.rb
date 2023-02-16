@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::Base
   include SessionsHelper
   
-  private 
+  private
   
-  # Confirms a logged-in user
+  # Confirms login user.
   def logged_in_user
     unless logged_in?
       store_location
@@ -11,6 +11,12 @@ class ApplicationController < ActionController::Base
       flash[:danger] = "Please log in."
     end
   end
-  
 
+  # Confirms an admin user
+  def admin_user
+    unless current_user.admin?
+      redirect_to root_url 
+      flash[:danger] = "You're not authorized to perform this."
+    end
+  end
 end

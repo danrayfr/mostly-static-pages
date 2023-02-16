@@ -102,6 +102,9 @@ GEM
     bootstrap-will_paginate (1.0.0)
       will_paginate
     builder (3.2.4)
+    bullet (7.0.7)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.11)
     capybara (3.38.0)
       addressable
       matrix
@@ -265,6 +268,7 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    uniform_notifier (1.16.0)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -293,6 +297,7 @@ DEPENDENCIES
   bootsnap
   bootstrap-sass (~> 3.4)
   bootstrap-will_paginate (~> 1.0)
+  bullet
   capybara
   debug
   faker (~> 3.1)

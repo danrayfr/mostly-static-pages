@@ -31,7 +31,7 @@ class MicropostInterfaceTest < ActionDispatch::IntegrationTest
     assert_select 'a', text: 'Delete'
     first_micropost = @user.microposts.paginate(page: 1).first
     assert_difference 'Micropost.count', -1 do
-    delete micropost_path(first_micropost)
+      delete micropost_path(first_micropost)
     end
     # Visit different user (no delete links)
     get user_path(users(:genie))
