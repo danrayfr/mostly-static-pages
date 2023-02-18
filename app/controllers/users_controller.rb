@@ -5,12 +5,12 @@ class UsersController < ApplicationController
 
   def index
     @users = User.paginate(page: params[:page], per_page: params[:per_page]).order(:created_at)
-    
   end
 
   def show
     @user = User.find(params[:id])
-    @microposts = @user.microposts.paginate(page: params[:page])
+    @microposts = @user.microposts.includes(image_attachment: :blob).paginate(page: params[:page])
+    @toys = @user.toys.includes(images_attachments: :blob).paginate(page: params[:page])
   end
 
   def new
@@ -80,8 +80,4 @@ class UsersController < ApplicationController
     end
   end
 
-  # Confirms an admin user
-  def admin_user
-    redirect_to root_url unless current_user.admin?
-  end
 end

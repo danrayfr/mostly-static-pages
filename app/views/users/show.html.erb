@@ -23,4 +23,19 @@
       </div>
     <% end %>
   </div>
-</div> 
+</div>
+
+<div class="container">
+<% if @user.toys.any? %>
+ <h3>Toys (<%= @user.toys.count %>)</h3>
+    <div class="row row-cols-3 g-3">
+        <% if @user.toys.any?%>
+          <%= render @toys %>
+    </div>
+      <% end %>
+<% end %>
+</div>
+
+<div class="pagination">
+  <%= will_paginate @microposts %>
+</div>

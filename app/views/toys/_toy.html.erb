@@ -1,0 +1,26 @@
+<div class="card mb-3" style="max-width: 540px;">
+<div class="row g-0">
+  <div class="col-md-4">
+    <% if toy.images.attached? %>
+      <%= image_tag(toy.images.first.variant(resize_to_limit: [100, 100]), alt: toy.name, class: "img-fluid rounded-start", style:"width:600px;height:200px;") %>
+    <% else %>
+      <%= image_tag("https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png", alt: toy.name, class: "img-fluid rounded-start", style:"width:600px;height:200px;")%>
+    <% end %>
+  </div>
+  <div class="col-md-8">
+    <div class="card-body">
+      <h5 class="card-title"><%= link_to toy.name, toy_path(toy) %></h5>
+      <p class="card-text">
+        <%= toy.description.truncate(25) %>
+      </p>
+      <p class="card-text"> Listed by <%= toy.user.name%> </p>
+      <p class="card-text">
+        <small class="text-muted">
+          <%= toy.date_listed%>
+        </small>
+      </p>
+      <p><%= link_to "View" , toy_path(toy), class: "btn btn-primary" %></p>
+    </div>
+  </div>
+</div>
+</div>

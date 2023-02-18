@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+flash:
+  name: flash
+  description: the fastest man alive.
+  user: lana
+
+batman:
+  name: batman
+  description: the dark knight
+  user: lana
