@@ -1,1 +1,1 @@
-Mime::Type.register "*/*", :all
+Mime::Type.register "text/javascript", :js
