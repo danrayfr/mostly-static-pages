@@ -68,7 +68,7 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  host = 'https://mysite-eaw8.onrender.com/'
+  host = 'https://mysite-eaw8.onrender.com'
 
   config.action_mailer.default_url_options = { host: host, protocol: 'https' } # Use https if deploy on cloud
 
