@@ -1,31 +1,74 @@
-<header class="navbar navbar-fixed-top navbar-inverse" data-controller="dropdown">
+<!--header class="navbar navbar-fixed-top navbar-inverse" data-controller="dropdown">
   <div class="container">
     <%= link_to 'sample app', root_path, id: "logo" %>
     <nav>
-    <!-- Example single danger button -->
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to 'Home', root_path %></li>
-        <li><%= link_to "Toys", toys_path %></li>
-        <li><%= link_to 'Help', help_path %></li>
+        <li><%#= link_to 'Home', root_path %></li>
+        <li><%#= link_to "Toys", toys_path %></li>
+        <li><%#= link_to 'Help', help_path %></li>
         <% if logged_in? %>
-          <li><%= link_to "Users", users_path  %></li>          
+          <li><%#= link_to "Users", users_path  %></li>          
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-action="click->dropdown#toggle">
               Account<b class="caret" ></b>
             </a>
             <ul data-dropdown-target="toggleable" class="dropdown-content hidden">
-              <li><%= link_to "Profile", user_path(current_user) %></li>
-              <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+              <li><%#= link_to "Profile", user_path(current_user) %></li>
+              <li><%#= link_to "Settings", edit_user_path(current_user) %></li>
               <li class="divider"></li>
               <li>
-                <%= link_to "Logout", logout_path, data: { turbo_method: :delete } %>
+                <%#= link_to "Logout", logout_path, data: { turbo_method: :delete } %>
               </li>
             </ul>
           </li>
         <% else %>
-          <li><%= link_to 'Login', login_path %></li>
+          <li><%#= link_to 'Login', login_path %></li>
         <% end %>
       </ul>
     </nav>
   </div>
-</header>
+</header-->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white" data-controller="dropdown">
+  <div class="container-fluid" style="width:65%">
+    <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" data-action="click->dropdown#toggleMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" data-dropdown-target="menu">
+      <%= link_to image_tag('rails.png', height:"15", alt:"sampleapp-logo", class: "navbar-brand mt-2 mt-lg-0"), root_path %>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><%= link_to "Home", root_path, class:"nav-link" %></li>
+        <li class="nav-item"><%= link_to "Help", help_path, class:"nav-link" %></li>
+        <li class="nav-item"><%= link_to "Toys", toys_path, class:"nav-link" %></li>
+        <li class="nav-item"><%= link_to "Users", users_path, class:"nav-link" if logged_in? %> </li>
+      </ul>
+    </div>
+
+    <div class="d-flex align-items-center">
+      <div class="dropdown">
+        <% if logged_in? %>
+          <div class="dropdown">
+            <a class="dropdown-toggle d-flex align-items-center hidden-arrow" id="navbarDropdownMenuAvatar" role="button" data-mb-toggle="dropdown" aria-expanded="false" data-toggle="dropdown" data-action="click->dropdown#toggle">
+              <%= gravatar_for(current_user, size: 30, class: "rounded-circle")%>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar" data-dropdown-target="toggleable">
+              <li><%= link_to "Profile", user_path(current_user), class: "dropdown-item", style:"color:black;"%></li>
+              <li><%= link_to "Settings", edit_user_path(current_user), class: "dropdown-item", style:"color:black;"%></li>
+              <li class="divider"></li>
+              <li><%= link_to "Dashboard", dashboard_path, class: "dropdown-item", style:"color:black;"%></li>
+              <li class="divider"></li>
+              <li>
+                <%= link_to "Logout", logout_path, class: "dropdown-item", style:"color:black;", data: { turbo_method: :delete } %>
+              </li>
+            </ul>
+          </div>
+        <% else %>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><%= link_to "Login", login_path, class:"nav-link" %></li>
+        </ul>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</nav>

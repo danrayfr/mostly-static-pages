@@ -1,9 +1,10 @@
 class ToysController < ApplicationController
   before_action :logged_in_user, only: [:show, :new, :create, :edit, :update, :destroy]
-  before_action :admin_user, only: [:edit, :update, :destroy]
+  before_action :admin_user, only: :destroy
+  before_action :correct_user, only: [:edit]
 
   def index
-    @toys = Toy.includes(images_attachments: :blob).paginate(page: params[:page])
+    @toys = Toy.includes(:user, images_attachments: :blob).paginate(page: params[:page])
     # render json: @toys.as_json(include: :images)
   end
 
@@ -16,15 +17,8 @@ class ToysController < ApplicationController
   end
 
   def create
-    @toy = current_user.toys.new(toy_params)
-    images = params[:toy][:images]
-
-    if images
-      images.each do |image|
-        @toy.images.attach(image)
-      end
-    end
-    
+    @toy = current_user.toys.build(toy_params)
+  
     if @toy.save
       flash[:success] = "Toy saved successfully."
       redirect_to toys_url
@@ -39,13 +33,7 @@ class ToysController < ApplicationController
 
   def update
     @toy = Toy.find(params[:id])
-    images = params[:toy][:images]
 
-    if images
-      images.each do |image|
-        @toy.images.attach(image)
-      end
-    end
     if @toy.update(toy_params)
       flash[:success] = "Toy updated successfully."
       redirect_to @toy
@@ -64,6 +52,11 @@ class ToysController < ApplicationController
 
   def toy_params
     params.require(:toy).permit(:name, :description, :user_id, images: [])
+  end
+  
+  def correct_user
+    @toy = current_user.toys.find_by(id: params[:id])
+    redirect_to root_url if @toys.nil?
   end
   
 end

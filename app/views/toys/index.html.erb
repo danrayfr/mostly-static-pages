@@ -1,16 +1,16 @@
 <% provide(:title, "All Toys")%>
+
 <h1>Toys</h1>
-<p>These are the the list of toys</p>
-<%= link_to "Create new", new_toy_path, class: "btn btn-primary" if logged_in? %>
-<br>
-<div class="py-5">
-  <div class="container">
-    <div class="row hidden-md-up">
-      <% @toys.each do |toy|%>
-        <%= render "toy", toy: toy %>
+<p>View listings.</p>
+<%= link_to "Create new", new_toy_path, class: "btn btn-primary btn-lg" if logged_in? %>
+<div class="container">
+  <%= will_paginate %>
+    <div class="row row-cols-3 g-3">
+        <% @toys.each do |toy|%>
+      <div class="col">
+          <%= render "toy", toy: toy %>
+      </div>
       <% end %>
     </div>
     <%= will_paginate %>
-  </div>
 </div>
-

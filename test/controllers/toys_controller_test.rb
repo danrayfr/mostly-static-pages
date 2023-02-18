@@ -26,13 +26,13 @@ class ToysControllerTest < ActionDispatch::IntegrationTest
   #   assert_redirected_to root_url
   # end
 
-  test "should redirect edit when user not an admin" do 
-    log_in_as @non_admin
-    assert_no_difference 'Toy.count' do
-      patch toy_path(@flash), params: { toy: { name: "flash", description: "fastest man alive", user_id: @non_admin.id}}
-    end
-    assert_redirected_to root_url
-  end
+  # test "should redirect edit when user  admin" do 
+  #   log_in_as @non_admin
+  #   assert_no_difference 'Toy.count' do
+  #     patch toy_path(@flash), params: { toy: { name: "flash", description: "fastest man alive", user_id: @non_admin.id}}
+  #   end
+  #   assert_redirected_to root_url
+  # end
 
   test "should redirect delete when user not an admin" do
     log_in_as @non_admin

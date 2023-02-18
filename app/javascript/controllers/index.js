@@ -18,3 +18,6 @@ application.register("dropdown", DropdownController);
 
 import MultipleImagesController from "./multiple_images_controller";
 application.register("multiple_images", MultipleImagesController);
+
+import CarouselController from "./carousel_controller";
+application.register("carousel", CarouselController);
