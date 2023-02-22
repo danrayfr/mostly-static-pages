@@ -13,11 +13,11 @@ eagerLoadControllersFrom("controllers", application);
 // import HelloController from "./hello_controller";
 // application.register("hello", HelloController);
 
-// import DropdownController from "./dropdown_controller";
-// application.register("dropdown", DropdownController);
-//
-// import MultipleImagesController from "./multiple_images_controller";
-// application.register("multiple_images", MultipleImagesController);
-//
-// import CarouselController from "./carousel_controller";
-// application.register("carousel", CarouselController);
+import DropdownController from "./dropdown_controller";
+application.register("dropdown", DropdownController);
+
+import MultipleImagesController from "./multiple_images_controller";
+application.register("multiple_images", MultipleImagesController);
+
+import CarouselController from "./carousel_controller";
+application.register("carousel", CarouselController);
