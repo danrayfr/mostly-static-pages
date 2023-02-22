@@ -7,16 +7,16 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 # Create a main sample user with admin role. 
-User.create!(name: "Example User", 
-              email: "user@example.com", 
+User.create!(name: "Dan Ray Rollan", 
+              email: "danrayrollan98@gmail.com", 
               password: "password", 
               password_confirmation: "password", 
               admin: true,
               activated: true, 
               activated_at: Time.zone.now
             )
-User.create!(name: "Dan Ray Rollan", 
-              email: "danrayrollan98@gmail.com", 
+User.create!(name: "Admin User", 
+              email: "user@admin.com", 
               password: "password", 
               password_confirmation: "password", 
               admin: true,
