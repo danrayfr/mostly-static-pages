@@ -1,11 +1,10 @@
 class ToysController < ApplicationController
   before_action :logged_in_user, only: [:show, :new, :create, :edit, :update, :destroy]
   before_action :admin_user, only: :destroy
-  before_action :correct_user, only: [:edit]
+  before_action :correct_user, only: :edit
 
   def index
     @toys = Toy.includes(:user, images_attachments: :blob).paginate(page: params[:page])
-    # render json: @toys.as_json(include: :images)
   end
 
   def show
@@ -56,7 +55,7 @@ class ToysController < ApplicationController
   
   def correct_user
     @toy = current_user.toys.find_by(id: params[:id])
-    redirect_to root_url if @toys.nil?
+    redirect_to root_url if @toy.nil?
   end
   
 end

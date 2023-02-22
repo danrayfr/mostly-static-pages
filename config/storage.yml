@@ -10,9 +10,8 @@ amazon:
   service: S3
   access_key_id: <%= Rails.application.credentials.dig(:aws, :access_key_id) %>
   secret_access_key: <%= Rails.application.credentials.dig(:aws, :secret_access_key) %>
-  region: ap-southeast-1
-  bucket: sample-app-<%= Rails.env %>
-  endpoint: https://sample-app-development.s3.ap-southeast-1.amazonaws.com
+  region: us-west-2
+  bucket: sample-toy-app-<%= Rails.env %>
 # Remember not to checkin your GCS keyfile to a repository
 # google:
 #   service: GCS

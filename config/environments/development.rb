@@ -44,9 +44,7 @@ Rails.application.configure do
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   # Change to :local when testing locally, and change to :amazon when testing to s3 bucket
-  config.active_storage.service = :amazon
-
-  config.active_storage.host = "ap-southeast-1.amazonaws.com"
+  config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
