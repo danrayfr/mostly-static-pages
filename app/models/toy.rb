@@ -5,6 +5,7 @@ class Toy < ApplicationRecord
   validates :description, length: { maximum: 255, optional: true}
   has_many_attached :images
   validates :images, content_type: { in: [:png, :jpg, :jpeg, :gif], message: "Images should have valid image format(png,jpg,jpeg,gif)."}
+  validates :images, size: { less_than: 5.megabytes , message: 'should less than 5MB.' }
 
   self.per_page = 6
 

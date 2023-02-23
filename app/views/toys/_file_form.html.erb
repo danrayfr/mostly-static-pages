@@ -1,0 +1,8 @@
+<div class="dropzone dropzone-default dz-clickable" data-controller="dropzone" data-dropzone-max-file-size="5" data-dropzone-accepted-files="image/*" data-dropzone-max-files="5" data-upload-multiple="true">
+  <%= f.file_field :images, multiple: true, direct_upload: true, data: { dropzone_target: 'input' } %>
+  <div class="dropzone-msg dz-message needsclick">
+    <h3 class="dropzone-msg-title">Drop file here or click to upload.</h3>
+    <span class="dropzone-msg-desc">The file should less than 5mb, allowed file types are: jpeg, png, gif</span>
+    <span class="dropzone-msg-desc">Files should have a file extension, otherwise, it will not be uploaded.</span>
+  </div>
+</div>
