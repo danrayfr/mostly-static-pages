@@ -13,9 +13,11 @@
       <%= f.text_area :description, class: "form-control"%>
 
       <div class="mb-3" data-controller="multiple_images" id = "Img">
-        <%=f.label :images, class: "form-label"  %>
-        <%= f.file_field :images, multiple: true, class: "form-control", accept: "image/png, image/jpeg, image/jpg", "data-multiple_images-target": "input", "data-action": "multiple_images#preview" %>
+        <%#=f.label :images, class: "form-label"  %>
+        <%#= f.file_field :images, multiple: true, class: "form-control", accept: "image/png, image/jpeg, image/jpg", "data-multiple_images-target": "input", "data-action": "multiple_images#preview" %>
       </div>
+
+      <%= render "file_form", f: f %>
 
       <%= f.submit "Create", class: "btn btn-primary" %>
     <% end %>
