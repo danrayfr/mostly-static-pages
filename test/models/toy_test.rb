@@ -15,11 +15,6 @@ class ToyTest < ActiveSupport::TestCase
     assert_not @toy.valid?
   end
 
-  test "description should be optional" do
-    @toy.description = nil || "a"
-    assert @toy.valid?
-  end
-
   test "description should be at most 255 characters" do
     @toy.description = "a" * 256
     assert_not @toy.valid?

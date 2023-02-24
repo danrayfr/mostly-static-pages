@@ -5,9 +5,9 @@
   <%= f.text_field :name, class: "form-control" %>
 
   <%= f.label :description, class: "form-label" %>
-  <%= f.text_area :description, class: "form-control"%>
+  <%= f.rich_text_area :description, class:"mb-4"%>
 
-  <%= render "image_field", form: f %>
+  <%= render "image_field", form: f%>
 
   <%= f.submit "Create", class: "btn btn-primary" %>
 

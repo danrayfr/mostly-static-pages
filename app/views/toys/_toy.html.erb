@@ -12,7 +12,7 @@
         <div class="card-body">
           <h5 class="card-title"><%= link_to toy.name, toy_path(toy) %></h5>
           <p class="card-text">
-            <%= toy.description.truncate(25) %>
+            <%= toy.truncated_description %>
           </p>
           <p class="card-text"> Listed by <%= toy.user.name%> </p>
           <p class="card-text">

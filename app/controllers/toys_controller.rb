@@ -4,7 +4,7 @@ class ToysController < ApplicationController
   before_action :correct_user, only: :edit
 
   def index
-    @toys = Toy.includes(:user, images_attachments: :blob).paginate(page: params[:page])
+    @toys = Toy.includes(:user, :rich_text_description,images_attachments: :blob).paginate(page: params[:page])
   end
 
   def show
