@@ -3,7 +3,7 @@ import jquery from "jquery";
 import * as boostrap from "bootstrap";
 import "@popperjs/core";
 import "controllers";
-import { Turbo } from "@hotwired/turbo-rails";
+import "@hotwired/turbo-rails";
 
 window.jquery = jquery;
 window.$ = jquery;

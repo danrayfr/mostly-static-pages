@@ -5,12 +5,10 @@
 <%= link_to "Create new", new_toy_path, class: "btn btn-primary btn-lg" if logged_in? %>
 <div class="container">
   <%= will_paginate %>
+
     <div class="row row-cols-3 g-3">
-        <% @toys.each do |toy|%>
-      <div class="col">
-          <%= render "toy", toy: toy %>
-      </div>
-      <% end %>
+      <%= render @toys %>
     </div>
-    <%= will_paginate %>
+
+  <%= will_paginate %>
 </div>

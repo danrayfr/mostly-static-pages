@@ -1,6 +1,7 @@
-<% provide(:title, "Show Toy")%>
+<% provide(:title, "Toy-#{@toy.name}")%>
+
 <div class="container">
-<h1><%= @toy.name %></h1>
+  <h1><%= @toy.name %></h1>
   <div data-controller="carousel" id="carouselExampleIndicators" class="carousel slide carousel-fade" data-mdb-ride="carousel">
 
     <div class="carousel-inner mb-5">
@@ -21,7 +22,7 @@
       <% end %>
     </div>
   </div>
-<h2><%= @toy.description %></h2>
+  <h2><%= @toy.description %></h2>
 
   <%= link_to "Edit Toy", edit_toy_path(@toy), class: "btn btn-primary" if logged_in? && @toy.user == current_user %>
   <%= link_to "Delete", @toy, class: "btn btn-danger",  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} if logged_in? && current_user.admin?  %>
