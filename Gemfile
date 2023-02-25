@@ -87,3 +87,5 @@ gem "active_storage_validations", "~> 1.0"
 gem "mini_magick", "~> 4.12"
 
 gem "aws-sdk-s3", "~> 1.119", require: false
+
+gem 'rack-cors'
