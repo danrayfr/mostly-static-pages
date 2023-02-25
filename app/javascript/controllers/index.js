@@ -1,10 +1,4 @@
 // Import and register all your controllers from the importmap under controllers/*
-import {
-  getMetaValue,
-  findElement,
-  removeElement,
-  insertAfter,
-} from "../helpers/dropzone";
 import { application } from "controllers/application";
 
 // Eager load all controllers defined in the import map under controllers/**/*_controller
