@@ -17,4 +17,5 @@ class Toy < ApplicationRecord
   def truncated_description
     description.to_plain_text.truncate(50)
   end
+  
 end
