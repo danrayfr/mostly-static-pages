@@ -1,0 +1,22 @@
+  <h1><%= toy.name %></h1>
+  <div data-controller="carousel" id="carouselExampleIndicators" class="carousel slide carousel-fade" data-mdb-ride="carousel">
+
+    <div class="carousel-inner mb-5">
+      <div class="carousel-item active" data-carousel-target="main">
+        <img src="<%= url_for toy.images.first %>" class="d-block w-100" style="width:500px;height:600px;"/>
+      </div>
+    </div>
+
+    <div class="carousel-indicators" style="margin-bottom: -20px;">
+      <% if toy.images.attached? %>
+        <% toy.images.each_with_index do |img, index| %>
+          <button data-action="carousel#click" data-carousel-url-param=<%= url_for img %> type="button" style="width: 100px;">
+            <%= image_tag(img.variant(resize_to_limit: [500, 500]), class:"d-block w-100")%>
+          </button>
+        <% end %>
+      <% else %>
+      <p>No image available.</p>
+      <% end %>
+    </div>
+  </div>
+  <h2><%= toy.description %></h2>
