@@ -8,5 +8,5 @@ import "@hotwired/turbo-rails";
 window.jquery = jquery;
 window.$ = jquery;
 console.log($);
-import "trix"
-import "@rails/actiontext"
+import "trix";
+import "@rails/actiontext";

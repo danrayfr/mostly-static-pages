@@ -6,9 +6,7 @@ export default class extends Controller {
   static values = {
     images: Array,
   };
-  connect() {
-    console.log("Connecting to data-controller");
-  }
+  connect() {}
 
   click(e) {
     const url = e.params.url;
