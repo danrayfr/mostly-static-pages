@@ -11,6 +11,7 @@ module Types
     field :remember_digest, String, null: false
     field :admin, Boolean, null: false
     field :activation_digest, String
+    field :activated, Boolean, null: false
     field :toy, [ToyType], null: false
   end
 end

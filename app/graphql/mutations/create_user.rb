@@ -1,7 +1,6 @@
 module Mutations
-  class CreateUser < BaseMutation
-    # often we will need input types for specific mutation
-    # in those cases we can define those input types in the mutation class itself
+  class CreateUser < Mutations::BaseMutation
+    null true
     class AuthProviderSignupData < Types::BaseInputObject
       argument :credentials, Types::AuthProviderCredentialsInput, required: false
     end
@@ -9,7 +8,8 @@ module Mutations
     argument :name, String, required: true
     argument :auth_provider, AuthProviderSignupData, required: false
 
-    type Types::UserType
+    field :user, Types::UserType, null: true
+    field :errors, [String], null: false
 
     def resolve(name: nil, auth_provider: nil)
       user = User.new(
@@ -19,11 +19,17 @@ module Mutations
       )
 
       if user.save
-        { user: user }
         user.send_activation_email
+        {
+          user: user,
+          errors: [],
+        }
       else
-        raise GraphQL::ExecutionError, user.errors.full_messages.join(", ")
+        {
+          user: nil, errors: user.errors.full_messages
+        }
       end
     end
+
   end
 end
