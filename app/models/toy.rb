@@ -3,7 +3,7 @@ class Toy < ApplicationRecord
   default_scope -> { order(created_at: :desc)}
   validates :name, presence: true
   has_rich_text :description
-  validates :description, presence: true
+  validates :description, presence: true, length: { maximum: 255 }
   has_many_attached :images
   validates :images, content_type: { in: [:png, :jpg, :jpeg, :gif], message: "Images should have valid image format(png,jpg,jpeg,gif)."}
   validates :images, size: { less_than: 5.megabytes , message: 'should less than 5MB.' }

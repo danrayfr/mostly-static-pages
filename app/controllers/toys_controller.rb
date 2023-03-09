@@ -1,8 +1,8 @@
 class ToysController < ApplicationController
   before_action :logged_in_user, only: [:show, :new, :edit, :destroy]
   before_action :admin_user, only: :destroy
-  before_action :correct_user, only: :edit
-
+  # before_action :correct_user, only: :edit
+  
   def index
     @toys = Toy.includes(:user, :rich_text_description, images_attachments: :blob).paginate(page: params[:page])
   end

@@ -89,3 +89,8 @@ gem "mini_magick", "~> 4.12"
 gem "aws-sdk-s3", "~> 1.119", require: false
 
 gem 'rack-cors'
+
+
+gem "graphql", "~> 1.8"
+gem "graphiql-rails", "~> 1.8"
+gem 'search_object_graphql', '0.3.1'
