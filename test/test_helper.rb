@@ -22,9 +22,6 @@ class ActiveSupport::TestCase
     session[:user_id] = user.id
   end
 
-  def send_activation_email
-    UserMailer.account_activation(self).deliver_now
-  end
 end
 
 class ActionDispatch::IntegrationTest

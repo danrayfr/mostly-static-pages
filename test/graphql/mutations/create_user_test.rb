@@ -15,9 +15,9 @@ class Mutations::CreateUserTest < ActiveSupport::TestCase
         }
       }
     )
-    assert user.persisted?
-    assert_equal user.name, "Test User"
-    assert_equal user.email, "user@example.com"
+    assert user[:user].persisted?
+    assert_equal user[:user].name, "Test User"
+    assert_equal user[:user].email, "user@example.com"
   end
 
 end
