@@ -18,7 +18,7 @@
         <% @toys.each do |toy| %>
         <tr>
           <td><%= link_to toy.name, toy_path(toy)%></td>
-          <td><%= toy.description.truncate(50) %></td>
+          <td><%= toy.description.to_plain_text.truncate(50) %></td>
           <td><%= toy.updated_at.strftime("%B %d, %Y") %></td>
           <td><%= toy.user.name %></td>
           <td>

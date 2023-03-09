@@ -25,7 +25,7 @@ class ToysInterfaceTest < ActionDispatch::IntegrationTest
     log_in_as @user
     get toy_path(@toy)
     assert_match @toy.name, response.body
-    assert_match @toy.description, response.body
+    assert_match @toy.description.to_plain_text, response.body
     assert_select 'a', text: 'Delete'
   end
 
@@ -33,7 +33,7 @@ class ToysInterfaceTest < ActionDispatch::IntegrationTest
     log_in_as @non_admin
     get toy_path(@toy)
     assert_match @toy.name, response.body
-    assert_match @toy.description, response.body
+    assert_match @toy.description.to_plain_text, response.body
     assert_select 'a', text: 'Edit Toy', count: 0
     assert_select 'a', text: 'Delete', count: 0
   end

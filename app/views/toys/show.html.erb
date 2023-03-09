@@ -4,7 +4,7 @@
 
   <%= render "toy_item", toy: @toy %>
 
-  <%= link_to "Edit Toy", edit_toy_path(@toy), class: "btn btn-primary" if logged_in? && @toy.user == current_user %>
+  <%= link_to "Edit Toy", edit_toy_path(@toy), class: "btn btn-primary" if logged_in? && @toy.user == current_user || current_user.admin? %>
   <%= link_to "Delete", @toy, class: "btn btn-danger",  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} if logged_in? && current_user.admin?  %>
 
 </div>
