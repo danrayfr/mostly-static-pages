@@ -6,11 +6,11 @@
 <div class="container">
   <%= will_paginate %>
 
-    <%= turbo_frame_tag "toys" do %>
+    <%#= turbo_frame_tag "toys" do %>
       <div class="row row-cols-3 g-3">
         <%= render @toys %>
       </div>
-    <% end %>
+    <%# end %>
 
   <%= will_paginate %>
 </div>

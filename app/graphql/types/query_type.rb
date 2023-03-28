@@ -4,9 +4,13 @@ module Types
     include GraphQL::Types::Relay::HasNodeField
     include GraphQL::Types::Relay::HasNodesField
 
+    def me
+      context[:current_user]
+    end
+
     field :all_toys, [ToyType], null: false
     def all_toys
-      Toy.all
+      Toy.all.includes(:user, :rich_text_description, images_attachments: :blob)
     end
 
     field :all_users, [UserType], null: false
