@@ -94,3 +94,6 @@ gem 'rack-cors'
 gem "graphql", "~> 1.8"
 gem "graphiql-rails", "~> 1.8"
 gem 'search_object_graphql', '0.3.1'
+
+gem "jwt"
+gem "pry"

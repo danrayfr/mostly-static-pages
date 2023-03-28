@@ -96,5 +96,4 @@ Rails.application.configure do
 
   # enable debug mode
   config.assets.debug = true
-
 end

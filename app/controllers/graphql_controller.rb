@@ -1,3 +1,4 @@
+require "jwt"
 class GraphqlController < ApplicationController
   # If accessing from outside this domain, nullify the session
   # This allows for outside API access while preventing CSRF attacks,
@@ -10,7 +11,9 @@ class GraphqlController < ApplicationController
     operation_name = params[:operationName]
     context = {
       session: session,
-      current_user: current_user
+      current_user: current_user,
+      request: request,
+      response: response,
     }
     result = StaticAppSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
@@ -19,18 +22,43 @@ class GraphqlController < ApplicationController
     handle_error_in_development(e)
   end
 
-  private
-
   def current_user
     return unless session[:token]
+    # return unless get_bearer_token.present?
+    # token = session[:token]
+    
+    return unless session[:token]
+    token = session[:token]
+    secret_key = Rails.application.credentials.secret_key_base
+    return unless token && token.match?(/\A[^.]+\.[^.]+[^.]+/)
+    algorithm = 'HS256'
+    decoded = JWT.decode(token, secret_key, true, { algorithm: algorithm })
+    payload = decoded[0]
+    User.find(payload['sub'])
+    rescue JWT::DecodeError => e
+    nil
 
-    crypt = ActiveSupport::MessageEncryptor.new(Rails.application.credentials.secret_key_base.byteslice(0..31))
-    token = crypt.decrypt_and_verify session[:token]
-    user_id = token.gsub('user-id:', '').to_i
-    User.find user_id
-  rescue ActiveSupport::MessageVerifier::InvalidSignature
+    # crypt = ActiveSupport::MessageEncryptor.new(Rails.application.credentials.secret_key_base.byteslice(0..31))
+    # token = crypt.decrypt_and_verify session[:token]
+    # user_id = token.gsub('user-id:', '').to_i
+    # User.find user_id
+  # rescue ActiveSupport::MessageVerifier::InvalidSignature
+  # rescue JWT::DecodeError => e
     nil
   end
+
+  def get_bearer_token
+    bearer = request.headers['Authorization'] || request.headers['authorization']
+    if bearer.present?
+      token = bearer.gsub('Bearer', '').strip
+      puts "Token from headers: #{token}"
+      token
+    else 
+      nil
+    end
+  end
+
+  private
 
   # Handle variables in form data, JSON body, or a blank value
   def prepare_variables(variables_param)
