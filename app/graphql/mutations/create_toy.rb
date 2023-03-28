@@ -13,15 +13,14 @@ module Mutations
 
     def resolve(name:, description:, images:)
       errors = []
-      # user = context[:current_user]
-      user = current_user
+      user = context[:current_user]
+      # user = current_user
       
-      puts "name: #{name}, description: #{description}, images: #{images}, user: #{user}"
       unless user
         errors << "User must be authenticated to create a toy"
         return { toy: nil, errors: errors }
       end
-
+      
       # binding.pry
       
       toy = user.toys.build(name: name, description: description, images: images)
@@ -34,34 +33,36 @@ module Mutations
       
     end
 
-    def current_user 
-      secret_key = Rails.application.credentials.secret_key_base
-      puts "Secret key: #{secret_key}"
-      token = get_bearer_token
-      puts "current user token from headers: #{token}"
+    # def current_user 
+    #   secret_key = Rails.application.credentials.secret_key_base
+    #   puts "Secret key: #{secret_key}"
+    #   token = get_bearer_token
+    #   puts "current user token from headers: #{token}"
 
-      return nil unless token.present?
+    #   return nil unless token.present?
 
-      begin
-        secret_key = Rails.application.credentials.secret_key_base
-        decoded_token = JWT.decode(token, secret_key, true, algorithm: "HS256")
-        user_id = decoded_token.first["user_id"]
-        User.find_by(id: user_id)
-      rescue JWT::DecodeError, ActiveRecord::RecordNotFound => e
-        nil
-      end
-    end
+    #   begin
+    #     secret_key = Rails.application.credentials.secret_key_base
+    #     decoded_token = JWT.decode(token, secret_key, true, algorithm: "HS256")
+    #     user_id = decoded_token.first["user_id"]
+    #     User.find_by(id: user_id)
+    #   rescue JWT::DecodeError, ActiveRecord::RecordNotFound => e
+    #     nil
+    #   end
+    # end
 
-    def get_bearer_token
-      bearer = context[:request].headers['Authorization'] || context[:request].headers['authorization']
-      if bearer.present?
-        token = bearer.gsub('Bearer ', '').strip
-        puts "Token from headers: #{token}"
-        token
-      else 
-        nil
-      end
-    end
-    
+    # def get_bearer_token
+    #   bearer = context[:request].headers['Authorization'] || context[:request].headers['authorization']
+    #   if bearer.present?
+    #     token = bearer.gsub('Bearer ', '').strip
+    #     token = token.undump
+    #     puts "Token from headers: #{token}"
+    #     token
+    #   else 
+    #     nil
+    #   end
+    # end
+    #
+
   end
 end

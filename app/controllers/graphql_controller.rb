@@ -23,19 +23,16 @@ class GraphqlController < ApplicationController
   end
 
   def current_user
-    return unless session[:token]
-    # return unless get_bearer_token.present?
-    # token = session[:token]
-    
-    return unless session[:token]
-    token = session[:token]
+    # return unless session[:token]
     secret_key = Rails.application.credentials.secret_key_base
-    return unless token && token.match?(/\A[^.]+\.[^.]+[^.]+/)
+    token = get_bearer_token
+    return unless token.present?
+
     algorithm = 'HS256'
-    decoded = JWT.decode(token, secret_key, true, { algorithm: algorithm })
-    payload = decoded[0]
-    User.find(payload['user_id'])
-    rescue JWT::DecodeError => e
+    decoded_token = JWT.decode(token, secret_key, true, { algorithm: algorithm })
+    user_id = decoded_token.first["user_id"]
+    User.find_by(id: user_id)
+  rescue JWT::DecodeError => e
     nil
 
     # crypt = ActiveSupport::MessageEncryptor.new(Rails.application.credentials.secret_key_base.byteslice(0..31))
@@ -43,15 +40,13 @@ class GraphqlController < ApplicationController
     # user_id = token.gsub('user-id:', '').to_i
     # User.find user_id
   # rescue ActiveSupport::MessageVerifier::InvalidSignature
-  # rescue JWT::DecodeError => e
-    nil
   end
 
   def get_bearer_token
     bearer = request.headers['Authorization'] || request.headers['authorization']
     if bearer.present?
-      token = bearer.gsub('Bearer', '').strip
-      puts "Token from headers: #{token}"
+      token = bearer.gsub('Bearer ', '').strip
+      token = token.undump
       token
     else 
       nil
