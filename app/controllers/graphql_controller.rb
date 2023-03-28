@@ -34,7 +34,7 @@ class GraphqlController < ApplicationController
     algorithm = 'HS256'
     decoded = JWT.decode(token, secret_key, true, { algorithm: algorithm })
     payload = decoded[0]
-    User.find(payload['sub'])
+    User.find(payload['user_id'])
     rescue JWT::DecodeError => e
     nil
 
